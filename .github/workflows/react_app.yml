@@ -26,7 +26,15 @@ jobs:
       uses: actions/setup-node@v2-beta
       with:
         node-version: 12
-      
+    - uses: actions/checkout@v2
+    - uses: borales/actions-yarn@v2.0.0
+      with:
+          cmd: install # will run `yarn install` command
+    - uses: borales/actions-yarn@v2.0.0
+      with:
+          cmd: build # will run `yarn build` command
+    - name: Build react app
+      run: yarn build
     # Runs a set of commands using the runners shell
     - name: install surge
       run: npm install --gloabblay surge
