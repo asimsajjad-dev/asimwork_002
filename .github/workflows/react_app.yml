@@ -38,10 +38,10 @@ jobs:
     # Runs a set of commands using the runners shell
     - name: install surge
       run: npm install --gloabblay surge
-    - name: http://asimwork002.surge.sh/
+    - name: http://asimwork002.surge.sh
       uses: dswistowski/surge-sh-action@v1
       with:
-          domain: 'http://asimwork002.surge.sh//'
+          domain: 'http://asimwork002.surge.sh'
           project: '.'
           login: ${{secrets.SURGE_LOGIN}}
           token: ${{secrets.SURGE_TOKEN}}
