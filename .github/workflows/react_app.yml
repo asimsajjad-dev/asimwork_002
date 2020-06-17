@@ -26,22 +26,17 @@ jobs:
       uses: actions/setup-node@v2-beta
       with:
         node-version: 12
-    - uses: actions/checkout@v2
-    - uses: borales/actions-yarn@v2.0.0
+    - name: GitHub Action for Yarn
+      uses: Borales/actions-yarn@v2.1.0
       with:
-          cmd: install # will run `yarn install` command
-    - uses: borales/actions-yarn@v2.0.0
-      with:
-          cmd: build # will run `yarn build` command
-    - name: Build react app
+        # Yarn command
+        cmd: install # npm install/ yarn install
+    
+    - name: Creating build
       run: yarn build
-    # Runs a set of commands using the runners shell
-    - name: install surge
-      run: npm install --gloabblay surge
-    - name: http://asimwork002.surge.sh
-      uses: dswistowski/surge-sh-action@v1
-      with:
-          domain: 'http://asimwork002.surge.sh'
-          project: './public'
-          login: ${{secrets.SURGE_LOGIN}}
-          token: ${{secrets.SURGE_TOKEN}}
+    
+    - name: installing surge  
+      run: npm install -g surge
+    
+    - name: deploying on surge
+      run: surge ./build http://asim02.surge.sh// --token ${{secrets.SURGE_TOKEN}}
